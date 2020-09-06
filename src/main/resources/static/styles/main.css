@@ -1,0 +1,43 @@
+body{
+    background: #ccd1d1;
+    padding: 30px;
+}
+.calculator{
+    background:  #f6ddcc;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.calculator_result{
+    padding-top: 10px;
+    font-size: larger;
+}
+.calc_history{
+    position: center;
+    text-align: center;
+}
+/*
+.form_p{
+    text-align: center;
+}
+
+.form_btns{
+    box-shadow: 5px 5px 10px 5px #f2f3f4;
+}
+*/
+
+.table{
+    padding-top: 10px;
+}
+
+.input_container{
+    background:  #f6ddcc;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+}
+.myDB{
+    padding-top: 10px;
+}
