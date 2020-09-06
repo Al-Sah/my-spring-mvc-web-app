@@ -36,10 +36,13 @@
             <p> Your result: ${calc_res}</p>
         </div>
 
-
-
-
     </div>
+
+    <form action="/hi/calc/history" method="get">
+        <div class=" calc_history mt-3">
+            <button type="submit" class="btn btn-primary" > Show History </button>
+        </div>
+    </form>
 
 
 

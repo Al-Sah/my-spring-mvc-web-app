@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/hi")
 public class CalculatorController {
@@ -19,9 +21,12 @@ public class CalculatorController {
     private CalcHistoryRepository calcHistoryRepository;
 
     @GetMapping("/calc/history")
-    public String Calculator( Model model) {
-        model.addAttribute("calc_res", "start");
-        return "calc";
+    public String Calculator(Map<String, Object> model) {
+
+        Iterable<CalcHistoryMessage> historyMessages = calcHistoryRepository.findAll();
+        model.put("messages", historyMessages);
+
+        return "calcHistory";
     }
 
     @GetMapping("/calc")
