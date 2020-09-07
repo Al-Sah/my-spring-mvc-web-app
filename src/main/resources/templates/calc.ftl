@@ -7,6 +7,7 @@
     <h2> Mega Calculator</h2>
 
     <form action= "#" method="get">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" >
 
         <div class="form-group">
             <input type="text" name = "first_number"  placeholder=" Enter 1st number " >
@@ -32,13 +33,15 @@
         <@common.form_btn></@common.form_btn>
 
     </form>
+
         <div class="calculator_result">
             <p> Your result: ${calc_res}</p>
         </div>
 
     </div>
 
-    <form action="/hi/calc/history" method="get">
+    <form action="/home/calc/history" method="get">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <div class=" calc_history mt-3">
             <button type="submit" class="btn btn-primary" > Show History </button>
         </div>

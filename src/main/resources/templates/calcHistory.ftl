@@ -30,7 +30,8 @@
     </table>
 
     <#--<button type="submit" class="btn btn-primary calc_history" > <a href="/hi/calc"> Go Back </a>  </button>-->
-    <form action="/hi/calc">
+    <form action="/home/calc">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <input type="submit" class="btn btn-primary calc_history" value="Go Back" />
     </form>
 

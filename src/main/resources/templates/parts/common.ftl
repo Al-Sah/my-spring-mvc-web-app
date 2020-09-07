@@ -21,17 +21,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="/hi"> Home </a>
+                        <a class="nav-link" href="/home"> Home </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/hi/MyDB"> DataBase </a>
+                        <a class="nav-link" href="/home/MyDB"> DataBase </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/hi/calc"> Calculator </a>
+                        <a class="nav-link" href="/home/calc"> Calculator </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -39,6 +39,11 @@
                         <a class="nav-link" href="/bye"> Just some page </a>
                     </li>
                 </ul>
+
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    <input type="submit" value="Sign Out">
+                </form>
             </div>
 
         </nav>

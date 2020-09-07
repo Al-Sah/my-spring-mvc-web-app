@@ -3,5 +3,5 @@
 
 <@common.page "bye">
     <p> bye ((((((</p>
-    <a href="/hi"> GO BACK!)</a>
+    <a href="/home"> GO BACK!)</a>
 </@common.page>

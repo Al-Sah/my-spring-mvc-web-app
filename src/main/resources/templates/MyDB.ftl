@@ -6,7 +6,7 @@
         <h4> Add new message to the data base</h4>
 
     <form method="post" action="add-message">
-
+        <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <div>
             <input type="text" name = "text"  placeholder=" Enter text " >
             <input type="text" name = "tag" placeholder=" Enter tag " >
