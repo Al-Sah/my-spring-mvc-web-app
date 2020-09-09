@@ -17,36 +17,34 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
 
-            <form action="/registration" method="get">
-
-                <input type="submit" class="btn btn-primary" value="Registration"/>
-                <#--<button type="submit" class="btn btn-primary">Submit</button>-->
-            </form>
-
         </nav>
 
         <div class="container mt-3">
 
-            <#--<#if param.error??>
-                <p> Invalid username or password</p>
-            </#if>-->
-
-
-            <form action="/login" method="post">
+            <form action="/registration" method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
 
                 <div class="form-group">
-                    <label> User Name : <input type="text" class="form-control" name="username" placeholder="Who are you?"/> </label>
+                    <label> Create your Name <input type="text" class="form-control" name="username" placeholder="Who are you?"/> </label>
+                    <#if errorUserMessage??>
+                        <p>${errorUserMessage}</p>
+                    </#if>
                 </div>
+
                 <div class="form-group">
                     <label> Password: <input type="password" class="form-control" name="password" placeholder="Your password"/> </label>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Sign In"/>
+                <div class="form-group">
+                    <label> Confirm password: <input type="password" class="form-control" name="confirmPassword" placeholder="Your password"/> </label>
+                    <#if errorPswdMessage??>
+                        <p>${errorPswdMessage}</p>
+                    </#if>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Add me"/>
                 <#--<button type="submit" class="btn btn-primary">Submit</button>-->
             </form>
-
-
         </div>
 
     </body>
