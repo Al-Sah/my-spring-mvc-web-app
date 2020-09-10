@@ -17,5 +17,9 @@
         <img src="/static/pictures/smile.jpeg" width= "300px" alt="упсь( Картинка не найдена">
     </div>
 
+    <div >
+        <p> GO to the <a href="/userControl/uL"> user List </a> </p>
+    </div>
+
 </@common.page>
 
