@@ -1,8 +1,10 @@
 package my_app.controllers;
 
 import my_app.entities.Message;
+import my_app.entities.User;
 import my_app.repositories.MessagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,19 +21,6 @@ public class DataBaseController {
     private MessagesRepository messagesRepository;
 
 
-/*    @GetMapping("/MyDB")
-    public String GoToDB(Map<String, Object> model){ //Map <String, Object> model
-
-        //Iterable<MyFirstDBEntity> myFirstDBEntities = messageRepo.findAll();
-        //System.out.println(myFirstDBEntities);
-        // model.put("messages", myFirstDBEntities);
-        //model.addAttribute("messages", myFirstDBEntities);
-
-        Iterable<Message> messages = messagesRepository.findAll();
-        model.put("messages", messages);
-
-        return "MyDB";
-    }*/
 
     @GetMapping("/MyDB")
     public String GoToDB(@RequestParam(name="filter", required = false, defaultValue="") String filter, Map<String, Object> model){ //Map <String, Object> model
@@ -50,10 +39,13 @@ public class DataBaseController {
     }
 
     @PostMapping("add-message")
-    public String add(@RequestParam String text, @RequestParam String tag, Map <String,Object> model){
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String text,
+            @RequestParam String tag, Map <String,Object> model){
 
         if(!(text.isEmpty() || tag.isEmpty())){
-            Message message = new Message(text, tag);
+            Message message = new Message(text, tag, user);
             messagesRepository.save(message);
         }
 

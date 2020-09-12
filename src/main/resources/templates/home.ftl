@@ -1,8 +1,8 @@
 <#import "parts/common.ftl" as common>
 
 <@common.page "Main">
+    <#include "parts/security.ftl">
     <p> Hello, ${name} !"  </p>
-
     <a href="/bye"> GO NEXT ;) </a>
 
     <div>
@@ -17,9 +17,14 @@
         <img src="/static/pictures/smile.jpeg" width= "300px" alt="упсь( Картинка не найдена">
     </div>
 
-    <div >
-        <p> GO to the <a href="/userControl/uL"> user List </a> </p>
-    </div>
+    <#if isAdmin>
+        <div >
+            <p> GO to the <a href="/userControl/uL"> user List </a> </p>
+        </div>
+    </#if>
+
+
+
 
 </@common.page>
 
