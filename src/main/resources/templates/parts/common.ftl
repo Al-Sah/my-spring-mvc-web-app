@@ -32,7 +32,7 @@
                 </ul>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home/calc"> Calculator </a>
+                        <a class="nav-link" href="/home/math/calc"> Calculator </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">

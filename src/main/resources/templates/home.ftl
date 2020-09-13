@@ -6,7 +6,7 @@
     <a href="/bye"> GO NEXT ;) </a>
 
     <div>
-        <p>If you want to calculate something, click <a href="/home/calc"> here </a> </p>
+        <p>If you want to calculate something, click <a href="/home/math/calc"> here </a> </p>
     </div>
 
     <div>

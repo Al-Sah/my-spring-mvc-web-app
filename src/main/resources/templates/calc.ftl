@@ -40,7 +40,7 @@
 
     </div>
 
-    <form action="/home/calc/history" method="get">
+    <form action="/home/math/calc/calcHistory" method="get">
         <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <div class=" calc_history mt-3">
             <button type="submit" class="btn btn-primary" > Show History </button>
