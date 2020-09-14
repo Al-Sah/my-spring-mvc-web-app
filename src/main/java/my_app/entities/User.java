@@ -16,7 +16,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
     private String username;
+    private String password;
+    private String email;
+    private String activateCode;
+    private boolean active;
 
     public User( String username, String password, String email, boolean active) {
         this.username = username;
@@ -25,14 +34,8 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    private String password;
-    private String email;
-    private boolean active;
-
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    public User() {
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -45,9 +48,12 @@ public class User implements UserDetails {
     public boolean isAdmin(){
         return roles.contains(Role.ADMIN);
     }
+    public String getActivateCode() {
+        return activateCode;
+    }
 
-
-    public User() {
+    public void setActivateCode(String activateCode) {
+        this.activateCode = activateCode;
     }
 
     public void setUsername(String username) {
@@ -73,7 +79,6 @@ public class User implements UserDetails {
     public void setActive(boolean active) {
         this.active = active;
     }
-
 
     public Long getId() {
         return id;

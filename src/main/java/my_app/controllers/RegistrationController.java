@@ -1,22 +1,24 @@
 package my_app.controllers;
 
-import my_app.entities.Role;
 import my_app.entities.User;
-import my_app.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import my_app.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collections;
 import java.util.Map;
 
 @Controller
 public class RegistrationController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserService userService;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @GetMapping("/registration")
     public String reg(){
@@ -24,22 +26,31 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String add(@RequestParam(name = "username") String username,
-                      @RequestParam(name = "password") String password,
-                      @RequestParam(name = "confirmPassword") String confirmPassword, Map<String,Object> model){
+    public String addUser(@RequestParam(name = "username") String username,
+                          @RequestParam(name = "password") String password,
+                          @RequestParam(name = "email") String email,
+                          @RequestParam(name = "confirmPassword") String confirmPassword, Map<String,Object> model){
 
-        User DBUser = userRepository.findByUsername(username);
-
+        User DBUser = userService.getUserByUsername(username);
         if(DBUser != null){
             model.put("errorUserMessage", "User Exist(");
         }
         if(!password.equals(confirmPassword)){
             model.put("errorPswdMessage", "Wrong password!!!!! NOOB");
         }
+        userService.addUser(username,password, email);
+        return "login";
+    }
 
-        User newUser = new User(username, password,"",true);
-        newUser.setRoles(Collections.singleton(Role.USER));
-        userRepository.save(newUser);
+    @GetMapping("/activate/{code}")
+    public String activate(Model model, @PathVariable String code){
+        boolean isActivated = userService.activateUser(code);
+
+        if(isActivated){
+            model.addAttribute("message", "User successfully activated");
+        } else {
+            model.addAttribute("message", "Activation code is not found");
+        }
 
         return "login";
     }

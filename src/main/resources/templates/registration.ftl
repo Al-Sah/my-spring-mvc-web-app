@@ -34,6 +34,9 @@
                 <div class="form-group">
                     <label> Password: <input type="password" class="form-control" name="password" placeholder="Your password"/> </label>
                 </div>
+                <div class="form-group">
+                    <label> Email: <input type="email" class="form-control" name="email" placeholder=" example@some.com "/> </label>
+                </div>
 
                 <div class="form-group">
                     <label> Confirm password: <input type="password" class="form-control" name="confirmPassword" placeholder="Your password"/> </label>

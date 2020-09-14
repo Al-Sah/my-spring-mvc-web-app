@@ -26,10 +26,9 @@
 
         <div class="container mt-3">
 
-            <#--<#if param.error??>
-                <p> Invalid username or password</p>
-            </#if>-->
-
+            <#if message??>
+                <p>message</p>
+            </#if>
 
             <form action="/login" method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -44,7 +43,6 @@
                 <input type="submit" class="btn btn-primary" value="Sign In"/>
                 <#--<button type="submit" class="btn btn-primary">Submit</button>-->
             </form>
-
 
         </div>
 
