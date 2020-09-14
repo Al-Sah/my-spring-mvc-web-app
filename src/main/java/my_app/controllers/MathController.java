@@ -32,7 +32,7 @@ public class MathController {
                             @RequestParam(value = "operation", required = false) String operation, Model model){
 
         model.addAttribute("calc_res", mathService.calculate(string_num1, string_num2, operation));
-        return "calc";
+        return "math";
     }
 
 }

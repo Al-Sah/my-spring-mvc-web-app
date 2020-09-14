@@ -21,7 +21,7 @@ public class MainController {
 
     @GetMapping("/bye")
     public String byePage(){
-        return "bye";
+        return "personProfile";
     }
 
 }

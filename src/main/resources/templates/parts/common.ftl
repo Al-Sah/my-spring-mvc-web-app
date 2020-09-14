@@ -20,33 +20,52 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/home"> Home </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home/MyDB"> DataBase </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home/math/calc"> Calculator </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/bye"> Just some page </a>
-                    </li>
-                </ul>
+                <#if user??>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/home"> Home </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/MyDB"> DataBase </a>
+                        </li>
+                    </ul>
 
-                <div class="navbar-text">${name}</div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home/math/calc"> Math </a>
+                        </li>
+                    </ul>
+                    <#if isAdmin>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userControl/uL"> Users </a>
+                            </li>
+                        </ul>
+                    </#if>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Profile </a>
+                        </li>
+                    </ul>
+                    <div class="navbar-text mr-2">${name}</div>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                        <input type="submit" value="Sign Out">
+                    </form>
 
-                <form action="/logout" method="post">
-                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                    <input type="submit" value="Sign Out">
-                </form>
+                <#else >
+                    <#if title != "Registration">
+                    <form action="/registration" method="get">
+                        <input type="submit" class="btn btn-primary" value="Registration"/>
+                    </form>
+                    </#if>
+                    <#if title == "Registration">
+                    <a href="/login" class="btn btn-primary"> Go Back </a>
+                    </#if>
+                </#if>
+
             </div>
 
         </nav>
@@ -68,10 +87,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary"> reset </button>
     </div>
-</#macro>
-
-<#macro boostrap_scripts>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </#macro>

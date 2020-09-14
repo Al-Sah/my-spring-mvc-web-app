@@ -1,6 +1,5 @@
 <#import "parts/common.ftl" as common>
 
-
 <@common.page "Calculator">
 
     <table class="table table-striped table-bordered mt-3">
@@ -18,21 +17,15 @@
                 <#else>
                     <th> some error </th>
                 </#if>
-
             </tr>
         <#else>
             <tr>
                 <th><p>No Messages</p></th>
             </tr>
         </#list>
-
         </tbody>
     </table>
 
-    <#--<button type="submit" class="btn btn-primary calc_history" > <a href="/hi/calc"> Go Back </a>  </button>-->
-    <form action="/home/calc">
-        <input type="hidden" name="_csrf" value="${_csrf.token}" >
-        <input type="submit" class="btn btn-primary calc_history" value="Go Back" />
-    </form>
+    <p> <a href="/home/math/calc" class="btn btn-primary calc_history" > Go Back </a> </p>
 
 </@common.page>

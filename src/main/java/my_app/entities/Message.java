@@ -18,6 +18,9 @@ public class Message {
     public String getAuthorName(){
         return author != null ? author.getUsername() : "no author(";
     }
+    public String getAuthorEmail(){
+        return author != null ? author.getEmail() : "no email(";
+    }
 
     public User getAuthor() {
         return author;

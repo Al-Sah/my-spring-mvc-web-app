@@ -49,10 +49,7 @@ public class DataBaseController {
             messagesRepository.save(message);
         }
 
-        Iterable<Message> messages = messagesRepository.findAll();
-        model.put("messages", messages);
-
-        return "MyDB";
+        return "redirect:/home/MyDB";
     }
 
 

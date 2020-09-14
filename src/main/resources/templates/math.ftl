@@ -1,9 +1,7 @@
 <#import "parts/common.ftl" as common>
-<@common.page "Calculator">
+<@common.page "Math">
 
     <div class="calculator">
-
-
     <h2> Mega Calculator</h2>
 
     <form action= "#" method="get">
@@ -46,10 +44,6 @@
             <button type="submit" class="btn btn-primary" > Show History </button>
         </div>
     </form>
-
-
-
-
 
 </@common.page>
 
