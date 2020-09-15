@@ -10,4 +10,6 @@ public interface MessagesRepository extends CrudRepository<Message, Long> {
 
     List<Message> findByTag(String tag);
 
+    void deleteById(Long id);
+
 }

@@ -1,11 +1,12 @@
 <#import "parts/common.ftl" as common>
 
 <@common.page "MyDB">
+    <#include "parts/security.ftl">
     <div class="input_container" >
 
         <h4> Add new message to the data base</h4>
 
-    <form method="post" action="add-message">
+    <form method="post" action="/DataBase/addMessage">
         <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <div>
             <input type="text" name = "text"  placeholder=" Enter text " >
@@ -48,6 +49,13 @@
                 <th> <i> ${message.tag} </i> </th>
                 <th>  ${message.authorEmail}  </th>
                 <th>  ${message.authorName}  </th>
+                <#if isAdmin>
+                <th>  <form action="/DataBase/deleteMessage" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                        <input type="hidden" name="id" value="${message.id}" />
+                        <input type="submit" class="btn btn-danger" value="Delete"/>
+                    </form>  </th>
+                </#if>
             </tr>
         <#else>
             <tr>

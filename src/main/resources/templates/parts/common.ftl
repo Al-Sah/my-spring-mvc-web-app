@@ -28,7 +28,7 @@
                     </ul>
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/home/MyDB"> DataBase </a>
+                            <a class="nav-link" href="/DataBase/MyDB"> DataBase </a>
                         </li>
                     </ul>
 

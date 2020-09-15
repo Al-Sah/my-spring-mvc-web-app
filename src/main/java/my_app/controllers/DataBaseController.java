@@ -1,9 +1,7 @@
 package my_app.controllers;
 
-import my_app.entities.Message;
 import my_app.entities.User;
-import my_app.repositories.MessagesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import my_app.services.MessagesService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,42 +12,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/DataBase")
 public class DataBaseController {
 
-    @Autowired
-    private MessagesRepository messagesRepository;
-
-
+    private final MessagesService messagesService;
+    public DataBaseController(MessagesService messagesService) {
+        this.messagesService = messagesService;
+    }
 
     @GetMapping("/MyDB")
-    public String GoToDB(@RequestParam(name="filter", required = false, defaultValue="") String filter, Map<String, Object> model){ //Map <String, Object> model
-
-        Iterable<Message> messages;
-
-        if (filter == null || filter.isEmpty()) {
-            messages = messagesRepository.findAll();
-        } else {
-            messages = messagesRepository.findByTag(filter);
-        }
-
-        model.put("messages", messages);
-
+    public String GoToDB(@RequestParam(name="filter", required = false, defaultValue="") String filter, Map<String, Object> model){ 
+        model.put("messages", messagesService.findMessages(filter));
         return "MyDB";
     }
 
-    @PostMapping("add-message")
+    @PostMapping("addMessage")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String text,
-            @RequestParam String tag, Map <String,Object> model){
+            @RequestParam String text, @RequestParam String tag){
+        messagesService.addMessage(user, text, tag);
+        return "redirect:/DataBase/MyDB";
+    }
 
-        if(!(text.isEmpty() || tag.isEmpty())){
-            Message message = new Message(text, tag, user);
-            messagesRepository.save(message);
-        }
-
-        return "redirect:/home/MyDB";
+    @PostMapping("deleteMessage")
+    public String deleteUser(@RequestParam Long id){
+        messagesService.deleteMessage(id);
+        return "redirect:/DataBase/MyDB";
     }
 
 

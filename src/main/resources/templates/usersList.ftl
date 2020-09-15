@@ -17,8 +17,9 @@
                 <th> <#list user.getRoles() as userRoles>${userRoles}<#sep>, </#list></th>
                 <th><div class="btn-group" role="group" aria-label="Basic example">
                         <a class="btn btn-dark" href="${user.id}"> edit user</a>
-                        <form action="/deleteUser" method="post">
+                        <form action="/userControl/deleteUser" method="post">
                             <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                            <input type="hidden" name="id" value="${user.id}" />
                             <input type="submit" class="btn btn-danger" value="Delete"/>
                         </form>
                     </div></th>

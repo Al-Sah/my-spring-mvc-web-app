@@ -78,4 +78,13 @@ public class UserService implements UserDetailsService {
 
         return true;
     }
+
+    public void deleteUser(Long id){
+        try{
+            userRepository.deleteById(id);
+        } catch(Exception exception){
+            System.out.println("[DELETE USER] " + exception.getMessage());
+        }
+    }
+
 }

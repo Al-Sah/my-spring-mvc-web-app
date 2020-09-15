@@ -43,4 +43,10 @@ public class UserController {
         userService.saveUser(user, myForm, username);
         return "redirect:/userControl/uL";
     }
+    @PostMapping("deleteUser")
+    public String deleteUser(@RequestParam Long id){
+        userService.deleteUser(id);
+
+        return "redirect:/userControl/uL";
+    }
 }
