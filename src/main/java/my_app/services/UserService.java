@@ -45,20 +45,24 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void sendMail(User user){
+        String message = String.format(
+                "Hello, %s ! \n" + "Welcome. Go this link: http://localhost:8080/activate/%s",
+                user.getUsername(), user.getActivateCode()
+        );
+
+        if(!StringUtils.isEmpty(user.getEmail())){
+            mailSender.send(user.getEmail(), "Activation Code", message);
+        }
+    }
+
     public void addUser(String username, String password, String email){
-            User newUser = new User(username, password,email,true);
+            User newUser = new User(username, password,email,false);
             newUser.setRoles(Collections.singleton(Role.USER));
             newUser.setActivateCode(UUID.randomUUID().toString());
             userRepository.save(newUser);
 
-            String message = String.format(
-                    "Hello, %s ! \n" + "Welcome. Go this link: http://localhost:8080/activate/%s",
-                    username, newUser.getActivateCode()
-            );
-
-            if(!StringUtils.isEmpty(newUser.getEmail())){
-                mailSender.send(email, "Activation Code", message);
-            }
+            sendMail(newUser);
     }
 
     @Override
@@ -73,6 +77,7 @@ public class UserService implements UserDetailsService {
             return false;
         }
         user.setActivateCode(null);
+        user.setActive(true);
 
         userRepository.save(user);
 

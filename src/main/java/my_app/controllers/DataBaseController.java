@@ -20,8 +20,8 @@ public class DataBaseController {
         this.messagesService = messagesService;
     }
 
-    @GetMapping("/MyDB")
-    public String GoToDB(@RequestParam(name="filter", required = false, defaultValue="") String filter, Map<String, Object> model){ 
+    @GetMapping("/showMessage")
+    public String showMessages(@RequestParam(name="filter", required = false, defaultValue="") String filter, Map<String, Object> model){
         model.put("messages", messagesService.findMessages(filter));
         return "MyDB";
     }
@@ -31,13 +31,13 @@ public class DataBaseController {
             @AuthenticationPrincipal User user,
             @RequestParam String text, @RequestParam String tag){
         messagesService.addMessage(user, text, tag);
-        return "redirect:/DataBase/MyDB";
+        return "redirect:/DataBase/showMessage";
     }
 
     @PostMapping("deleteMessage")
     public String deleteUser(@RequestParam Long id){
         messagesService.deleteMessage(id);
-        return "redirect:/DataBase/MyDB";
+        return "redirect:/DataBase/showMessage";
     }
 
 
