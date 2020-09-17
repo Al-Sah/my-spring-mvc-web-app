@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as common>
 
-<@common.page "Hello">
+<@common.commonPage "Hello">
     <h2> Hello user</h2>
     <div>
      <p><a href="/home" class="btn btn-primary calc_history"> Go to main page </a> </p>
@@ -17,4 +17,4 @@
             </li>
         </ul>
 
-</@common.page>
+</@common.commonPage>

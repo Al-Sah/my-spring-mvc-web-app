@@ -19,9 +19,4 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/bye")
-    public String byePage(){
-        return "personProfile";
-    }
-
 }

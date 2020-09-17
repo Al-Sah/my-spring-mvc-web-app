@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as common>
 
-<@common.page "Calculator">
+<@common.commonPage "Calculator">
 
     <table class="table table-striped table-bordered mt-3">
         <thead>
@@ -28,4 +28,4 @@
 
     <p> <a href="/home/math/calc" class="btn btn-primary calc_history" > Go Back </a> </p>
 
-</@common.page>
+</@common.commonPage>

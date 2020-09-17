@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/userControl")
-@PreAuthorize("hasAuthority('ADMIN')")
+
 
 public class UserController {
 
@@ -27,6 +27,7 @@ public class UserController {
        return "usersList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String usersList(@PathVariable User user, Model model){
         model.addAttribute("user", user);
@@ -34,6 +35,7 @@ public class UserController {
         return "userEdit";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("edited")
     public String editUser(
             @RequestParam String username,
@@ -43,6 +45,8 @@ public class UserController {
         userService.saveUser(user, myForm, username);
         return "redirect:/userControl/uL";
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("deleteUser")
     public String deleteUser(@RequestParam Long id){
         userService.deleteUser(id);

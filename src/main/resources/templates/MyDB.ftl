@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as common>
 
-<@common.page "MyDB">
+<@common.commonPage "MyDB">
     <#include "parts/security.ftl">
     <div class="input_container" >
 
@@ -68,5 +68,5 @@
 
 
     </div>
-</@common.page>
+</@common.commonPage>
 

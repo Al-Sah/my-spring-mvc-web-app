@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as common>
-<@common.page "Math">
+<@common.commonPage "Math">
 
     <div class="calculator">
     <h2> Mega Calculator</h2>
@@ -45,6 +45,6 @@
         </div>
     </form>
 
-</@common.page>
+</@common.commonPage>
 
 

@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as common>
-<@common.page "Login">
+<@common.loginPage "Login">
 
     <#if message??>
         <p>${message}</p>
@@ -16,4 +16,4 @@
         <input type="submit" class="btn btn-primary" value="Sign In"/>
     </form>
 
-</@common.page>
+</@common.loginPage>

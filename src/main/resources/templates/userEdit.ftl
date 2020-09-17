@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as common>
 
 
-<@common.page "bye">
+<@common.commonPage "bye">
 
     <form action="/userControl/edited" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -19,4 +19,4 @@
     </form>
 
 
-</@common.page>
+</@common.commonPage>

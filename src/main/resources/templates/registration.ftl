@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as common>
 
-<@common.page "Registration">
+<@common.loginPage "Registration">
 
     <div class="container mt-3">
 
@@ -35,4 +35,4 @@
         </form>
     </div>
 
-</@common.page>
+</@common.loginPage>
