@@ -92,4 +92,23 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public void updateProfile(User user, String password, String mail) {
+
+        boolean isChanged = ((mail!= null && !mail.isEmpty()) || (mail != null && !mail.equals(user.getEmail())));
+
+        if (isChanged) {
+            user.setEmail(mail);
+            if (!StringUtils.isEmpty(mail)) {
+                user.setActivateCode(UUID.randomUUID().toString());
+            }
+        }
+
+        if (!StringUtils.isEmpty(password)) {
+            user.setPassword(password);
+        }
+        userRepository.save(user);
+        if (isChanged) {
+            sendMail(user);
+        }
+    }
 }

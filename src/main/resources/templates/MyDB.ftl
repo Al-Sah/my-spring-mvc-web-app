@@ -9,19 +9,30 @@
     <form method="post" action="/DataBase/addMessage">
         <input type="hidden" name="_csrf" value="${_csrf.token}" >
         <div>
-            <input type="text" name = "text"  placeholder=" Enter text " >
-            <input type="text" name = "tag" placeholder=" Enter tag " >
+            <input type="text" class="mb-1 form-control ${(textError??)?string('is-invalid', '')}"
+                   value="<#if message??>${message.text}</#if>" name = "text"  placeholder=" Enter text " >
+            <#if textError??>
+                <div class="invalid-feedback">
+                    ${textError}
+                </div>
+            </#if>
+            <input type="text" class="form-control ${(tagError??)?string('is-invalid', '')}"
+                   value="<#if message??>${message.tag}</#if>" name = "tag" placeholder=" Enter tag " >
+            <#if tagError??>
+                <div class="invalid-feedback">
+                    ${tagError}
+                </div>
+            </#if>
         </div>
-        <@common.form_btn></@common.form_btn>
+        <@common.form_btn/>
     </form>
     </div>
 
-
+<#if !textError?? || !tagError??>
     <div class="myDB">
         <h4> Messages in DataBase: </h4>
 
         <form method="get">
-
             <div>
                 <span><input type="text" name = "filter"  placeholder=" Enter tag for searching " > </span>
                 <button type="submit"> search </button>
@@ -68,5 +79,6 @@
 
 
     </div>
+    </#if>
 </@common.commonPage>
 

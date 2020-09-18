@@ -7,7 +7,7 @@
     </div>
 
     <div>
-        <p> GO to the <a href="/DataBase/showMessage"> DataBase </a> </p>
+        <p> GO to the <a href="/DataBase/messages"> DataBase </a> </p>
     </div>
 
     <div class="picture">
