@@ -4,11 +4,13 @@ import my_app.entities.User;
 import my_app.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -26,20 +28,25 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@RequestParam(name = "username") String username,
-                          @RequestParam(name = "password") String password,
-                          @RequestParam(name = "email") String email,
-                          @RequestParam(name = "confirmPassword") String confirmPassword, Map<String,Object> model){
+    public String addUser(@RequestParam(name = "confirmPassword") String confirmPassword,
+                          @Valid User user, BindingResult bindingResult, Model model){
 
-        User DBUser = userService.getUserByUsername(username);
-        if(DBUser != null){
-            model.put("errorUserMessage", "User Exist(");
+        if(bindingResult.hasErrors()){
+            Map<String, String> errors = Utils.getErrors(bindingResult);
+            model.mergeAttributes(errors);
+            model.addAttribute("user", user);
+            return "registration";
+        }else if(!user.getPassword().equals(confirmPassword) && user.getPassword() != null){
+            model.addAttribute("PasswordError", "Wrong password!!!!! NOOB");
+            User DBUser = userService.getUserByUsername(user.getUsername());
+            if(DBUser != null){
+                model.addAttribute("UserError", "User Exist(");
+            }
+            return "registration";
+        }else{
+            userService.addUser(user);
         }
-        if(!password.equals(confirmPassword)){
-            model.put("errorPswdMessage", "Wrong password!!!!! NOOB");
-        }
-        userService.addUser(username,password, email);
-        return "login";
+        return "redirect:/login";
     }
 
     @GetMapping("/activate/{code}")
@@ -51,7 +58,6 @@ public class RegistrationController {
         } else {
             model.addAttribute("message", "Activation code is not found");
         }
-
         return "login";
     }
 }

@@ -56,8 +56,8 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void addUser(String username, String password, String email){
-            User newUser = new User(username, password,email,false);
+    public void addUser(User user){
+            User newUser = new User(user.getUsername(), user.getPassword(), user.getEmail(),false);
             newUser.setRoles(Collections.singleton(Role.USER));
             newUser.setActivateCode(UUID.randomUUID().toString());
             userRepository.save(newUser);

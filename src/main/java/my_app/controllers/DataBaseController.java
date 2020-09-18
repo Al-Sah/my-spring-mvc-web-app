@@ -38,7 +38,7 @@ public class DataBaseController {
             @Valid Message message, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
 
-            Map<String, String> errors = messagesService.getErrors(bindingResult);
+            Map<String, String> errors = Utils.getErrors(bindingResult);
             model.mergeAttributes(errors);
             model.addAttribute("message", message);
             return "MyDB";

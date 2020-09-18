@@ -6,18 +6,28 @@
 
     <h4>${user.username}</h4>
 
-    <form method="post">
+    <form method="post" action="/profile/edit">
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password:</label>
-            <div class="col-sm-6">
-                <input type="password" name="password" class="form-control" placeholder="Password" />
-            </div>
+            <label> Password: <input type="password" name="password"
+                                     class="form-control ${(passwordError??)?string('is-invalid', '')}"
+                                     placeholder="Password" />
+                <#if passwordError??>
+                    <div class="invalid-feedback">
+                        ${passwordError}
+                    </div>
+                </#if>
+            </label>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-6">
-                <input type="email" name="email" class="form-control" placeholder="some@some.com" value="${email!''}" />
-            </div>
+            <label> Email: <input type="email" class="form-control ${(emailError??)?string('is-invalid', '')}"
+                                  value="<#if user??>${user.email}</#if>"
+                                  name="email" placeholder="example@some.com "/>
+                <#if emailError??>
+                    <div class="invalid-feedback">
+                        ${emailError}
+                    </div>
+                </#if>
+            </label>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <button class="btn btn-primary" type="submit">Save</button>
