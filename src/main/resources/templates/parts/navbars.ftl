@@ -53,7 +53,7 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile"> Profile </a>
+                    <a class="nav-link" href="/profile/seeProfile"> Profile </a>
                 </li>
             </ul>
             <div class="navbar-text mr-2">${name}</div>
