@@ -12,7 +12,7 @@ public class Message {
     private Long id;
 
     @NotBlank(message = "Your message cannot be empty")
-    @Length(max = 2038, message = "Message too long (more than 2kB)")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String text;
     @NotBlank(message = "Fill the tag, NOOB !")
     private String tag;
@@ -25,6 +25,9 @@ public class Message {
         return author != null ? author.getUsername() : "no author(";
     }
     public String getAuthorEmail(){
+        if(author != null && author.getEmail() == null){
+            return "no email(";
+        }
         return author != null ? author.getEmail() : "no email(";
     }
 
