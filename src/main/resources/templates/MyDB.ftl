@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as common>
+<#import "parts/forms.ftl" as forms>
 
 <@common.commonPage "MyDB">
     <#include "parts/security.ftl">
@@ -61,11 +62,9 @@
                 <th>  ${message.authorEmail}  </th>
                 <th>  ${message.authorName}  </th>
                 <#if isAdmin>
-                <th>  <form action="/DataBase/deleteMessage" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                        <input type="hidden" name="id" value="${message.id}" />
-                        <input type="submit" class="btn btn-danger" value="Delete"/>
-                    </form>  </th>
+                    <th>  <@forms.deleteMessage message/>  </th>
+                    <#--<th>  <@forms.editMessageLink message/></th>-->
+                    <th> <a class="btn btn-secondary" href="/DataBase/editMessage/${message.id}"> Edit</a></th>
                 </#if>
             </tr>
         <#else>

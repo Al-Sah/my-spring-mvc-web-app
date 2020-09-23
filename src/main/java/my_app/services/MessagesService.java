@@ -14,11 +14,9 @@ public class MessagesService {
     }
 
 
-    public void addMessage(User user, String text,  String tag){
-        if(!(text.isEmpty() || tag.isEmpty())){
-            Message message = new Message(text, tag, user);
-            messagesRepository.save(message);
-        }
+    public void addMessage(User user, Message message){
+        Message newMessage = new Message(message.getText(), message.getTag(), user);
+        messagesRepository.save(newMessage);
     }
 
     public Iterable<Message> findMessages(String filter){
@@ -39,5 +37,16 @@ public class MessagesService {
 
     public Iterable<Message> findAll() {
         return messagesRepository.findAll();
+    }
+
+    public Message getMessage(Long id){
+        return messagesRepository.getOne(id);
+    }
+
+    public void editMessage(Long id, Message message) {
+        Message updatedMessage = getMessage(id);
+        updatedMessage.setText(message.getText());
+        updatedMessage.setTag(message.getTag());
+        messagesRepository.save(updatedMessage);
     }
 }

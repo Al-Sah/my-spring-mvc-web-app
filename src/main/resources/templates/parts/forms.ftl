@@ -38,3 +38,49 @@
         <button class="btn btn-primary" type="submit">Save</button>
     </form>
 </#macro>
+
+<#macro editMessageLink message>
+    <form action="/DataBase/editMessage/{message}" method="get">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <input type="hidden" name="id" value="${message}" />
+        <input type="submit" class="btn btn-secondary" value="Edit"/>
+    </form>
+</#macro>
+
+<#macro deleteMessage message>
+    <form action="/DataBase/deleteMessage" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <input type="hidden" name="id" value="${message.id}" />
+        <input type="submit" class="btn btn-danger" value="Delete"/>
+    </form>
+</#macro>
+
+<#macro editMessage message>
+    <form method="post" action="/DataBase/editMessage">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" >
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="id" value="${message.id}" />
+        <div>
+            <input type="text" class="mb-1 form-control ${(textError??)?string('is-invalid', '')}"
+                   value="<#if message??>${message.text}</#if>" name = "text"  placeholder=" Enter text " >
+            <#if textError??>
+                <div class="invalid-feedback">
+                    ${textError}
+                </div>
+            </#if>
+            <input type="text" class="form-control ${(tagError??)?string('is-invalid', '')}"
+                   value="<#if message??>${message.tag}</#if>" name = "tag" placeholder=" Enter tag " >
+            <#if tagError??>
+                <div class="invalid-feedback">
+                    ${tagError}
+                </div>
+            </#if>
+        </div>
+        <div class="form_btns">
+            <p class="form_btns form_p"> Action </p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary"> reset </button>
+        </div>
+    </form>
+</#macro>
